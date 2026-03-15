@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import PokerTable from './components/PokerTable';
 import PlayerSeat from './components/PlayerSeat';
+import ChipStack from './components/ChipStack';
 import ActionControls from './components/ActionControls';
 import AceHelper from './components/AceHelper';
 import usePokerGame from './hooks/usePokerGame';
@@ -9,8 +10,24 @@ import './App.css';
 
 const SEAT_POSITIONS = ['bottom', 'left', 'top-left', 'top-right', 'right'];
 
+function BetChips({ amount, position }) {
+  if (amount <= 0) return null;
+  return (
+    <motion.div
+      className={`bet-area bet-area--${position}`}
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      exit={{ scale: 0, opacity: 0 }}
+      transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+    >
+      <ChipStack amount={amount} maxChips={4} size="sm" animate />
+      <span className="bet-label">${amount}</span>
+    </motion.div>
+  );
+}
+
 function ShowdownBar({ gameState, onNextHand }) {
-  const { winners, wonByFold, message } = gameState;
+  const { winners, wonByFold } = gameState;
   if (!winners || winners.length === 0) return null;
 
   const winAmount = winners[0].amount;
@@ -202,6 +219,19 @@ export default function App() {
           pot={gameState.pot}
           message={gameState.message}
         />
+
+        {/* Bet chips on the table for each player */}
+        <AnimatePresence>
+          {gameState.players.map((player, i) =>
+            player.currentBet > 0 && !player.sittingOut ? (
+              <BetChips
+                key={`bet-${player.id}`}
+                amount={player.currentBet}
+                position={SEAT_POSITIONS[i]}
+              />
+            ) : null
+          )}
+        </AnimatePresence>
 
         {gameState.players.map((player, i) => (
           <PlayerSeat

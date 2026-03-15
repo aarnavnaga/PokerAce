@@ -7,39 +7,40 @@
   z-index: 2;
 }
 
-/* Positions around the table (5 players) —
-   transform pushes the element fully outside its anchor so
-   seats sit around the table, never on top of the felt. */
+/* ── Seat positions ──
+   translate() pushes the entire element outside its anchor point
+   so players sit around the table, never on the felt. */
 .player-seat--bottom {
-  bottom: -14px;
+  bottom: -16px;
   left: 50%;
   transform: translate(-50%, 100%);
 }
 
 .player-seat--left {
-  left: -14px;
+  left: -16px;
   top: 50%;
   transform: translate(-100%, -50%);
 }
 
 .player-seat--top-left {
-  top: 40px;
+  top: 18px;
   left: 24%;
   transform: translate(-50%, -100%);
 }
 
 .player-seat--top-right {
-  top: 40px;
+  top: 18px;
   right: 24%;
   transform: translate(50%, -100%);
 }
 
 .player-seat--right {
-  right: -14px;
+  right: -16px;
   top: 50%;
   transform: translate(100%, -50%);
 }
 
+/* ── Avatar ── */
 .player-seat__avatar-wrap {
   position: relative;
   width: 56px;
@@ -86,6 +87,7 @@
   z-index: 1;
 }
 
+/* ── Info panel ── */
 .player-seat__info {
   display: flex;
   flex-direction: column;
@@ -105,19 +107,20 @@
   letter-spacing: 0.3px;
 }
 
+.player-seat__wealth {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 0;
+}
+
 .player-seat__chips {
   font-size: 11px;
   color: #c9a84c;
   font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 3px;
 }
 
-.chip-icon {
-  font-size: 11px;
-}
-
+/* ── Action badge ── */
 .player-seat__action {
   font-size: 11px;
   font-weight: 700;
@@ -129,12 +132,14 @@
   white-space: nowrap;
 }
 
+/* ── Cards ── */
 .player-seat__cards {
   display: flex;
   gap: 4px;
   margin-top: 2px;
 }
 
+/* ── States ── */
 .player-seat--folded {
   opacity: 0.4;
 }
@@ -149,6 +154,7 @@
   box-shadow: 0 0 18px rgba(34, 197, 94, 0.5);
 }
 
+/* ── Showdown hand name ── */
 .player-seat__hand-name {
   font-size: 11px;
   font-weight: 700;

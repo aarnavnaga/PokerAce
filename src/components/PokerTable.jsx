@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Card from './Card';
+import ChipStack from './ChipStack';
 import './PokerTable.css';
 
 export default function PokerTable({ communityCards, pot, message }) {
@@ -7,31 +8,25 @@ export default function PokerTable({ communityCards, pot, message }) {
     <div className="poker-table">
       <div className="poker-table__felt">
         <div className="poker-table__felt-inner">
-          {/* Decorative elements */}
           <div className="poker-table__logo">
             POKER<span>ACE</span>
           </div>
 
-          {/* Pot display */}
           <AnimatePresence>
             {pot > 0 && (
               <motion.div
                 className="poker-table__pot"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
                 key={pot}
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
               >
-                <div className="pot-chips">
-                  <span className="pot-chip pot-chip--1" />
-                  <span className="pot-chip pot-chip--2" />
-                  <span className="pot-chip pot-chip--3" />
-                </div>
-                <span className="pot-amount">Pot: ${pot}</span>
+                <ChipStack amount={pot} maxChips={12} size="md" animate />
+                <span className="pot-amount">${pot}</span>
               </motion.div>
             )}
           </AnimatePresence>
 
-          {/* Community cards */}
           <div className="poker-table__community">
             <AnimatePresence>
               {communityCards.map((card, i) => (
@@ -40,7 +35,6 @@ export default function PokerTable({ communityCards, pot, message }) {
             </AnimatePresence>
           </div>
 
-          {/* Phase message */}
           <AnimatePresence mode="wait">
             {message && (
               <motion.div

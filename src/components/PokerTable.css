@@ -1,14 +1,16 @@
 .poker-table {
-  position: relative;
-  width: 780px;
-  height: 420px;
-  margin: 80px auto 0;
+  position: absolute;
+  width: 700px;
+  height: 370px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .poker-table__felt {
   width: 100%;
   height: 100%;
-  border-radius: 200px;
+  border-radius: 185px;
   background: linear-gradient(180deg, #1a6b3c 0%, #145a30 50%, #0e4925 100%);
   box-shadow:
     0 0 0 14px #5c3d1e,
@@ -24,7 +26,7 @@
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  border-radius: 200px;
+  border-radius: 185px;
   background: radial-gradient(ellipse at 50% 30%, rgba(255, 255, 255, 0.06) 0%, transparent 70%);
   pointer-events: none;
 }
@@ -36,7 +38,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   position: relative;
 }
 
@@ -59,30 +61,10 @@
 
 .poker-table__pot {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
+  align-items: flex-end;
+  gap: 8px;
   z-index: 2;
 }
-
-.pot-chips {
-  display: flex;
-  gap: -4px;
-  margin-bottom: 2px;
-}
-
-.pot-chip {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: inline-block;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  margin: 0 -3px;
-}
-
-.pot-chip--1 { background: #ef4444; }
-.pot-chip--2 { background: #3b82f6; }
-.pot-chip--3 { background: #c9a84c; }
 
 .pot-amount {
   font-size: 16px;
@@ -92,6 +74,7 @@
   background: rgba(0, 0, 0, 0.35);
   padding: 3px 14px;
   border-radius: 20px;
+  white-space: nowrap;
 }
 
 .poker-table__community {

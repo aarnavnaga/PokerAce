@@ -2,8 +2,59 @@
 .game-area {
   position: relative;
   width: 960px;
-  height: 580px;
-  margin: 100px auto 200px;
+  height: 520px;
+  margin: 120px auto 240px;
+}
+
+/* ── Bet chips on the table ── */
+.bet-area {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  z-index: 5;
+}
+
+.bet-area--bottom {
+  left: 50%;
+  top: 390px;
+  transform: translateX(-50%);
+}
+
+.bet-area--left {
+  left: 180px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bet-area--top-left {
+  left: 28%;
+  top: 125px;
+  transform: translateX(-50%);
+}
+
+.bet-area--top-right {
+  right: 28%;
+  top: 125px;
+  transform: translateX(50%);
+}
+
+.bet-area--right {
+  right: 180px;
+  top: 50%;
+  transform: translate(50%, -50%);
+}
+
+.bet-label {
+  font-size: 10px;
+  font-weight: 800;
+  color: #fbbf24;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1px 8px;
+  border-radius: 8px;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* ── HUD ── */
@@ -221,7 +272,7 @@
   transition: all 0.2s;
 }
 
-/* ── Showdown Bar (replaces blocking overlay) ── */
+/* ── Showdown Bar ── */
 .showdown-bar {
   position: fixed;
   bottom: 20px;

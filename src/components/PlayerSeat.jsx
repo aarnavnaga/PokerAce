@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Card from './Card';
+import ChipStack from './ChipStack';
 import './PlayerSeat.css';
 
 const BOT_AVATARS = ['🐹', '🐼', '🐱', '🦊'];
@@ -17,7 +18,6 @@ export default function PlayerSeat({
   const isHuman = player.isHuman;
   const avatar = isHuman ? '😎' : BOT_AVATARS[seatIndex % BOT_AVATARS.length];
 
-  // At showdown (not fold-win), reveal non-folded players' cards
   const revealCards =
     isShowdown && !wonByFold && !player.folded && !player.sittingOut;
 
@@ -63,9 +63,10 @@ export default function PlayerSeat({
 
       <div className="player-seat__info">
         <span className="player-seat__name">{player.name}</span>
-        <span className="player-seat__chips">
-          <span className="chip-icon">🪙</span> ${player.chips}
-        </span>
+        <div className="player-seat__wealth">
+          <ChipStack amount={player.chips} maxChips={6} size="sm" />
+          <span className="player-seat__chips">${player.chips}</span>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -94,7 +95,6 @@ export default function PlayerSeat({
         ))}
       </div>
 
-      {/* Show hand name at showdown for non-folded players */}
       <AnimatePresence>
         {isShowdown && !wonByFold && !player.folded && !player.sittingOut && player.evaluatedHand && (
           <motion.div
