@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import PokerTable from './components/PokerTable';
 import PlayerSeat from './components/PlayerSeat';
-import ChipStack from './components/ChipStack';
 import ActionControls from './components/ActionControls';
 import AceHelper from './components/AceHelper';
 import usePokerGame from './hooks/usePokerGame';
@@ -9,41 +8,6 @@ import { PHASES } from './engine/gameState';
 import './App.css';
 
 const SEAT_POSITIONS = ['bottom', 'left', 'top-left', 'top-right', 'right'];
-
-const SLIDE_FROM = {
-  bottom:      { x: 0, y: 80 },
-  left:        { x: -100, y: 0 },
-  'top-left':  { x: -75, y: -70 },
-  'top-right': { x: 75, y: -70 },
-  right:       { x: 100, y: 0 },
-};
-
-function BetChips({ amount, position }) {
-  if (amount <= 0) return null;
-  const from = SLIDE_FROM[position];
-  return (
-    <motion.div
-      className={`bet-area bet-area--${position}`}
-      initial={{ x: from.x, y: from.y, opacity: 0.6 }}
-      animate={{ x: 0, y: 0, opacity: 1 }}
-      exit={{ x: 0, y: 0, opacity: 0, scale: 0.5 }}
-      transition={{ type: 'spring', stiffness: 180, damping: 22 }}
-    >
-      <ChipStack amount={amount} maxChips={6} size="md" />
-      <span className="bet-label">${amount}</span>
-    </motion.div>
-  );
-}
-
-function TableStack({ player, position }) {
-  if (player.chips <= 0 || player.sittingOut) return null;
-  return (
-    <div className={`table-stack table-stack--${position}`}>
-      <ChipStack amount={player.chips} maxChips={14} size="xl" />
-      <span className="table-stack__label">${player.chips}</span>
-    </div>
-  );
-}
 
 function ShowdownBar({ gameState, onNextHand }) {
   const { winners, wonByFold } = gameState;
@@ -238,28 +202,6 @@ export default function App() {
           pot={gameState.pot}
           message={gameState.message}
         />
-
-        {/* Player chip stacks on the table */}
-        {gameState.players.map((player, i) => (
-          <TableStack
-            key={`stack-${player.id}`}
-            player={player}
-            position={SEAT_POSITIONS[i]}
-          />
-        ))}
-
-        {/* Bet chips that slide from stack area toward pot */}
-        <AnimatePresence>
-          {gameState.players.map((player, i) =>
-            player.currentBet > 0 && !player.sittingOut ? (
-              <BetChips
-                key={`bet-${player.id}`}
-                amount={player.currentBet}
-                position={SEAT_POSITIONS[i]}
-              />
-            ) : null
-          )}
-        </AnimatePresence>
 
         {gameState.players.map((player, i) => (
           <PlayerSeat

@@ -7,35 +7,32 @@
   z-index: 2;
 }
 
-/* ── Seat positions ──
-   translate() pushes the entire element outside its anchor point
-   so players sit around the table, never on the felt. */
 .player-seat--bottom {
-  bottom: -16px;
+  bottom: 0;
   left: 50%;
   transform: translate(-50%, 100%);
 }
 
 .player-seat--left {
-  left: -16px;
+  left: 30px;
   top: 50%;
   transform: translate(-100%, -50%);
 }
 
 .player-seat--top-left {
-  top: 18px;
-  left: 24%;
+  top: 30px;
+  left: 22%;
   transform: translate(-50%, -100%);
 }
 
 .player-seat--top-right {
-  top: 18px;
-  right: 24%;
+  top: 30px;
+  right: 22%;
   transform: translate(50%, -100%);
 }
 
 .player-seat--right {
-  right: -16px;
+  right: 30px;
   top: 50%;
   transform: translate(100%, -50%);
 }
@@ -111,6 +108,15 @@
   font-size: 11px;
   color: #c9a84c;
   font-weight: 600;
+}
+
+.player-seat__bet {
+  font-size: 10px;
+  color: #fbbf24;
+  font-weight: 700;
+  background: rgba(251, 191, 36, 0.1);
+  padding: 1px 6px;
+  border-radius: 6px;
 }
 
 /* ── Action badge ── */

@@ -63,6 +63,9 @@ export default function PlayerSeat({
       <div className="player-seat__info">
         <span className="player-seat__name">{player.name}</span>
         <span className="player-seat__chips">${player.chips}</span>
+        {player.currentBet > 0 && (
+          <span className="player-seat__bet">Bet: ${player.currentBet}</span>
+        )}
       </div>
 
       <AnimatePresence>
