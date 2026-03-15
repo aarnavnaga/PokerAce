@@ -1,9 +1,9 @@
 /* ── Game Area ── */
 .game-area {
   position: relative;
-  width: 900px;
-  height: 540px;
-  margin: 40px auto 120px;
+  width: 960px;
+  height: 580px;
+  margin: 100px auto 200px;
 }
 
 /* ── HUD ── */
@@ -18,6 +18,12 @@
 }
 
 .hud-left, .hud-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hud-stat {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,6 +53,29 @@
   padding: 4px 16px;
   border-radius: 20px;
   border: 1px solid rgba(201, 168, 76, 0.2);
+}
+
+/* ── Exit Button ── */
+.exit-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  background: rgba(239, 68, 68, 0.08);
+  color: #ef4444;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  font-family: inherit;
+  line-height: 1;
+}
+
+.exit-btn:hover {
+  background: rgba(239, 68, 68, 0.18);
+  border-color: rgba(239, 68, 68, 0.5);
 }
 
 /* ── Winner Overlay ── */

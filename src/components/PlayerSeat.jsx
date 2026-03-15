@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Card from './Card';
 import './PlayerSeat.css';
 
-const BOT_AVATARS = ['🤖', '👾', '🎭', '🦊'];
+const BOT_AVATARS = ['🐹', '🐼', '🐱', '🦊'];
 
 export default function PlayerSeat({
   player,

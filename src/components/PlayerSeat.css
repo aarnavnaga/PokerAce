@@ -7,35 +7,37 @@
   z-index: 2;
 }
 
-/* Positions around the table (5 players) */
+/* Positions around the table (5 players) —
+   transform pushes the element fully outside its anchor so
+   seats sit around the table, never on top of the felt. */
 .player-seat--bottom {
-  bottom: -60px;
+  bottom: -14px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, 100%);
 }
 
 .player-seat--left {
-  left: -60px;
-  top: 48%;
-  transform: translateY(-50%);
+  left: -14px;
+  top: 50%;
+  transform: translate(-100%, -50%);
 }
 
 .player-seat--top-left {
-  top: -50px;
-  left: 20%;
-  transform: translateX(-50%);
+  top: 40px;
+  left: 24%;
+  transform: translate(-50%, -100%);
 }
 
 .player-seat--top-right {
-  top: -50px;
-  right: 20%;
-  transform: translateX(50%);
+  top: 40px;
+  right: 24%;
+  transform: translate(50%, -100%);
 }
 
 .player-seat--right {
-  right: -60px;
-  top: 48%;
-  transform: translateY(-50%);
+  right: -14px;
+  top: 50%;
+  transform: translate(100%, -50%);
 }
 
 .player-seat__avatar-wrap {

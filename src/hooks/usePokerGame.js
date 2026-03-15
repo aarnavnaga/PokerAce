@@ -9,7 +9,7 @@ import {
 } from '../engine/gameState';
 import { getBotAction, assignPersonality } from '../engine/botAI';
 
-const BOT_NAMES = ['Ace Bot', 'Bluff King', 'Card Shark', 'Poker Pro'];
+const BOT_NAMES = ['Chippy', 'Mochi', 'Luna', 'Kitsune'];
 const BOT_DELAY = 800;
 
 export default function usePokerGame() {
@@ -70,6 +70,13 @@ export default function usePokerGame() {
         setIsProcessing(false);
       }
     }, BOT_DELAY);
+  }, []);
+
+  const quitGame = useCallback(() => {
+    clearBotTimer();
+    setGameState(null);
+    setShowdownReveal(false);
+    setIsProcessing(false);
   }, []);
 
   const startGame = useCallback(() => {
@@ -144,6 +151,7 @@ export default function usePokerGame() {
   return {
     gameState,
     startGame,
+    quitGame,
     nextHand,
     handlePlayerAction,
     availableActions,

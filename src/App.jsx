@@ -140,6 +140,7 @@ export default function App() {
   const {
     gameState,
     startGame,
+    quitGame,
     nextHand,
     handlePlayerAction,
     availableActions,
@@ -168,17 +169,30 @@ export default function App() {
     <div className="app">
       <div className="game-hud">
         <div className="hud-left">
-          <span className="hud-label">Round</span>
-          <span className="hud-value">{gameState.roundNumber}</span>
+          <motion.button
+            className="exit-btn"
+            onClick={quitGame}
+            title="Back to lobby"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            ✕
+          </motion.button>
+          <div className="hud-stat">
+            <span className="hud-label">Round</span>
+            <span className="hud-value">{gameState.roundNumber}</span>
+          </div>
         </div>
         <div className="hud-center">
           <span className="hud-phase">{gameState.phase.toUpperCase()}</span>
         </div>
         <div className="hud-right">
-          <span className="hud-label">Blinds</span>
-          <span className="hud-value">
-            ${gameState.smallBlind}/${gameState.bigBlind}
-          </span>
+          <div className="hud-stat">
+            <span className="hud-label">Blinds</span>
+            <span className="hud-value">
+              ${gameState.smallBlind}/${gameState.bigBlind}
+            </span>
+          </div>
         </div>
       </div>
 
