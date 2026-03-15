@@ -1,6 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Card from './Card';
-import ChipStack from './ChipStack';
 import './PlayerSeat.css';
 
 const BOT_AVATARS = ['🐹', '🐼', '🐱', '🦊'];
@@ -63,10 +62,7 @@ export default function PlayerSeat({
 
       <div className="player-seat__info">
         <span className="player-seat__name">{player.name}</span>
-        <div className="player-seat__wealth">
-          <ChipStack amount={player.chips} maxChips={6} size="sm" />
-          <span className="player-seat__chips">${player.chips}</span>
-        </div>
+        <span className="player-seat__chips">${player.chips}</span>
       </div>
 
       <AnimatePresence>

@@ -21,7 +21,7 @@ export default function PokerTable({ communityCards, pot, message }) {
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 25 }}
               >
-                <ChipStack amount={pot} maxChips={12} size="md" animate />
+                <ChipStack amount={pot} maxChips={14} size="lg" animate />
                 <span className="pot-amount">${pot}</span>
               </motion.div>
             )}

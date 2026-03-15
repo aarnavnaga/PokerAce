@@ -25,8 +25,10 @@ export default function ChipStack({ amount, maxChips = 8, animate = false, size 
     chips.push(DENOMINATIONS[DENOMINATIONS.length - 1]);
   }
 
-  const gap = size === 'sm' ? 3 : 4;
-  const discH = size === 'sm' ? 7 : 9;
+  const gapMap = { sm: 3, md: 4, lg: 5, xl: 6 };
+  const discMap = { sm: 7, md: 9, lg: 11, xl: 13 };
+  const gap = gapMap[size] || 4;
+  const discH = discMap[size] || 9;
   const h = chips.length > 0 ? (chips.length - 1) * gap + discH : 0;
 
   return (

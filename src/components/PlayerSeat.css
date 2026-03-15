@@ -107,13 +107,6 @@
   letter-spacing: 0.3px;
 }
 
-.player-seat__wealth {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 2px 0;
-}
-
 .player-seat__chips {
   font-size: 11px;
   color: #c9a84c;

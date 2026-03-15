@@ -10,19 +10,38 @@ import './App.css';
 
 const SEAT_POSITIONS = ['bottom', 'left', 'top-left', 'top-right', 'right'];
 
+const SLIDE_FROM = {
+  bottom:      { x: 0, y: 80 },
+  left:        { x: -100, y: 0 },
+  'top-left':  { x: -75, y: -70 },
+  'top-right': { x: 75, y: -70 },
+  right:       { x: 100, y: 0 },
+};
+
 function BetChips({ amount, position }) {
   if (amount <= 0) return null;
+  const from = SLIDE_FROM[position];
   return (
     <motion.div
       className={`bet-area bet-area--${position}`}
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      exit={{ scale: 0, opacity: 0 }}
-      transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+      initial={{ x: from.x, y: from.y, opacity: 0.6 }}
+      animate={{ x: 0, y: 0, opacity: 1 }}
+      exit={{ x: 0, y: 0, opacity: 0, scale: 0.5 }}
+      transition={{ type: 'spring', stiffness: 180, damping: 22 }}
     >
-      <ChipStack amount={amount} maxChips={4} size="sm" animate />
+      <ChipStack amount={amount} maxChips={6} size="md" />
       <span className="bet-label">${amount}</span>
     </motion.div>
+  );
+}
+
+function TableStack({ player, position }) {
+  if (player.chips <= 0 || player.sittingOut) return null;
+  return (
+    <div className={`table-stack table-stack--${position}`}>
+      <ChipStack amount={player.chips} maxChips={14} size="xl" />
+      <span className="table-stack__label">${player.chips}</span>
+    </div>
   );
 }
 
@@ -220,7 +239,16 @@ export default function App() {
           message={gameState.message}
         />
 
-        {/* Bet chips on the table for each player */}
+        {/* Player chip stacks on the table */}
+        {gameState.players.map((player, i) => (
+          <TableStack
+            key={`stack-${player.id}`}
+            player={player}
+            position={SEAT_POSITIONS[i]}
+          />
+        ))}
+
+        {/* Bet chips that slide from stack area toward pot */}
         <AnimatePresence>
           {gameState.players.map((player, i) =>
             player.currentBet > 0 && !player.sittingOut ? (
