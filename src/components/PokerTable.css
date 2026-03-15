@@ -1,0 +1,115 @@
+.poker-table {
+  position: relative;
+  width: 780px;
+  height: 420px;
+  margin: 80px auto 0;
+}
+
+.poker-table__felt {
+  width: 100%;
+  height: 100%;
+  border-radius: 200px;
+  background: linear-gradient(180deg, #1a6b3c 0%, #145a30 50%, #0e4925 100%);
+  box-shadow:
+    0 0 0 14px #5c3d1e,
+    0 0 0 18px #3a2510,
+    0 0 0 20px rgba(0, 0, 0, 0.3),
+    inset 0 0 60px rgba(0, 0, 0, 0.3),
+    0 20px 60px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.poker-table__felt::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 200px;
+  background: radial-gradient(ellipse at 50% 30%, rgba(255, 255, 255, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.poker-table__felt-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+}
+
+.poker-table__logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 42px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.04);
+  letter-spacing: 8px;
+  user-select: none;
+  pointer-events: none;
+}
+
+.poker-table__logo span {
+  color: rgba(201, 168, 76, 0.06);
+}
+
+.poker-table__pot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  z-index: 2;
+}
+
+.pot-chips {
+  display: flex;
+  gap: -4px;
+  margin-bottom: 2px;
+}
+
+.pot-chip {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  margin: 0 -3px;
+}
+
+.pot-chip--1 { background: #ef4444; }
+.pot-chip--2 { background: #3b82f6; }
+.pot-chip--3 { background: #c9a84c; }
+
+.pot-amount {
+  font-size: 16px;
+  font-weight: 800;
+  color: #fbbf24;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.35);
+  padding: 3px 14px;
+  border-radius: 20px;
+}
+
+.poker-table__community {
+  display: flex;
+  gap: 8px;
+  min-height: 104px;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.poker-table__message {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.25);
+  padding: 4px 16px;
+  border-radius: 12px;
+  z-index: 2;
+}

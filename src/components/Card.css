@@ -1,0 +1,154 @@
+.card {
+  width: 72px;
+  height: 104px;
+  border-radius: 10px;
+  position: relative;
+  cursor: default;
+  flex-shrink: 0;
+  user-select: none;
+  transform-style: preserve-3d;
+}
+
+.card--small {
+  width: 48px;
+  height: 70px;
+}
+
+.card__inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+/* ── Front face ── */
+.card__face {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25), 0 0 1px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+
+.card__face--red { color: #d32f2f; }
+.card__face--black { color: #1a1a2e; }
+
+/* ── Back face ── */
+.card__back {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 10px;
+  padding: 4px;
+  box-sizing: border-box;
+  background: #1a1a2e;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25), 0 0 1px rgba(0, 0, 0, 0.15);
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}
+
+.card__back-pattern {
+  width: 100%;
+  height: 100%;
+  border-radius: 7px;
+  border: 2px solid #c9a84c;
+  background: linear-gradient(135deg, #1a1a2e 25%, #16213e 25%, #16213e 50%, #1a1a2e 50%, #1a1a2e 75%, #16213e 75%);
+  background-size: 12px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card__back-inner {
+  background: #1a1a2e;
+  border: 1.5px solid #c9a84c;
+  border-radius: 5px;
+  padding: 6px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.card__back-icon {
+  font-size: 10px;
+  color: #c9a84c;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+/* ── Card content sizing ── */
+.card__corner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 6px;
+  line-height: 1;
+}
+
+.card__corner--bottom {
+  transform: rotate(180deg);
+}
+
+.card__rank {
+  font-size: 15px;
+  font-weight: 800;
+  font-family: 'Georgia', serif;
+}
+
+.card__suit-symbol {
+  font-size: 12px;
+  margin-top: -1px;
+}
+
+.card__center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.card__center-symbol {
+  font-size: 32px;
+  opacity: 0.9;
+}
+
+/* ── Small card overrides ── */
+.card--small .card__rank { font-size: 11px; }
+.card--small .card__suit-symbol { font-size: 9px; }
+.card--small .card__center-symbol { font-size: 24px; }
+.card--small .card__corner { padding: 2px 4px; }
+.card--small .card__back-icon { font-size: 8px; }
+
+/* ── Hover glow ── */
+.card:not(.card--facedown):not(.card--small):hover {
+  filter: brightness(1.02);
+}
+
+/* ── Subtle shine animation ── */
+@keyframes cardShine {
+  0% { background-position: -100px; }
+  100% { background-position: 200px; }
+}
+
+.card__face::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 10px;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 40%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.08) 60%,
+    transparent 100%
+  );
+  background-size: 200px;
+  animation: cardShine 3s infinite linear;
+  pointer-events: none;
+}
