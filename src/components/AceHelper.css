@@ -40,6 +40,15 @@
   animation: acePulse 2s ease-in-out infinite;
 }
 
+.ace-avatar-btn--off {
+  border-color: #334155;
+  opacity: 0.6;
+}
+
+.ace-avatar-btn--off:hover {
+  opacity: 0.9;
+}
+
 @keyframes acePulse {
   0%, 100% { box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(201, 168, 76, 0.15); }
   50% { box-shadow: 0 4px 20px rgba(201, 168, 76, 0.5), 0 0 24px rgba(201, 168, 76, 0.3); }
@@ -205,8 +214,28 @@
   font-weight: 600;
 }
 
-.ace-chat__close {
+.ace-chat__settings-btn {
   margin-left: auto;
+  background: none;
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  color: #64748b;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 3px 6px;
+  line-height: 1;
+  border-radius: 6px;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.ace-chat__settings-btn:hover,
+.ace-chat__settings-btn--active {
+  background: rgba(201, 168, 76, 0.1);
+  border-color: rgba(201, 168, 76, 0.3);
+  color: #c9a84c;
+}
+
+.ace-chat__close {
   background: none;
   border: none;
   color: #64748b;
@@ -222,6 +251,81 @@
 .ace-chat__close:hover {
   background: rgba(255, 255, 255, 0.08);
   color: #e2e8f0;
+}
+
+/* ── Level Selector ── */
+.ace-levels {
+  overflow: hidden;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+}
+
+.ace-levels__inner {
+  padding: 10px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ace-levels__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.ace-levels__options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.ace-level-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 4px 6px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(51, 65, 85, 0.5);
+  background: rgba(15, 23, 42, 0.6);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.ace-level-btn:hover {
+  border-color: rgba(201, 168, 76, 0.3);
+  background: rgba(201, 168, 76, 0.05);
+}
+
+.ace-level-btn--active {
+  border-color: #c9a84c;
+  background: rgba(201, 168, 76, 0.1);
+  box-shadow: 0 0 8px rgba(201, 168, 76, 0.15);
+}
+
+.ace-level-btn__icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.ace-level-btn__label {
+  font-size: 10px;
+  font-weight: 800;
+  color: #e2e8f0;
+  line-height: 1.2;
+}
+
+.ace-level-btn--active .ace-level-btn__label {
+  color: #c9a84c;
+}
+
+.ace-level-btn__desc {
+  font-size: 8px;
+  color: #64748b;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .ace-chat__body {
